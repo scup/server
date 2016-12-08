@@ -46,12 +46,12 @@ function maybe_bounce(req, res, sock, head, host) {
     if (!hostname) {
         return false;
     }
-    
+
+    let subdomain = tldjs.getSubdomain(hostname);
     if (host) {
-        tldjs.validHosts = [host]
+        subdomain = hostname.replace(host, '').replace('.', '');
     }
-    
-    const subdomain = tldjs.getSubdomain(hostname);
+
     if (!subdomain) {
         return false;
     }
