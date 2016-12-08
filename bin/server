@@ -13,6 +13,10 @@ const argv = optimist
         default: false,
         describe: 'use this flag to indicate proxy over https'
     })
+    .options('host', {
+        default: false,
+        describe: 'use this flag to indicate proxy over https'
+    })
     .options('port', {
         default: '80',
         describe: 'listen on this port for outside requests'
@@ -30,7 +34,8 @@ if (argv.help) {
 
 const server = require('../server')({
     max_tcp_sockets: argv['max-sockets'],
-    secure: argv.secure
+    secure: argv.secure,
+    host: argv.host
 });
 
 server.listen(argv.port, () => {
