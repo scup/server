@@ -49,7 +49,7 @@ function maybe_bounce(req, res, sock, head, host) {
 
     let subdomain = tldjs.getSubdomain(hostname);
     if (host) {
-        subdomain = hostname.replace(host, '').replace('.', '');
+        subdomain = hostname.replace(/\:\d*/gi, '').replace(host, '').replace('.', '');
     }
 
     if (!subdomain) {
